@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Mango.Web.Models.DTOs.ProductDto>
+
+<form>
+    <div class="container row">
+        @{
+            foreach (var productDto in Model)
+            {
+
+                <div class="col-4 ">
+                    <div class="p-0 my-3 border">
+                        <div class="card">
+                            <img src="@productDto.ImageUrl" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title text-success">@productDto.Name</h3>
+                                <span class="badge badge-light mb-2 ">@productDto.CategoryName</span>
+                                <p class="card-text">@Html.Raw(productDto.Description)</p>
+                                <div class="row">
+                                    <div class="col pt-1">
+                                        <span style="font-size:23px;">@string.Format("{0:c}", productDto.Price)</span>
+                                    </div>
+                                    <div class="col">
+                                        <a asp-controller="Home" asp-action="Details" asp-route-productId="@productDto.ProductId" class="btn btn-success form-control">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+</form>
